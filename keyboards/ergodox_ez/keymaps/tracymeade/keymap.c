@@ -7,6 +7,10 @@ enum {
     // ..., the rest of your layers
 };
 
+#define FULL_S LCTL(LCMD(KC_F))
+#define N_TAB LCTL(KC_TAB)
+#define P_TAB LCTL(LSFT(KC_TAB))
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Workman layer
  *
@@ -16,7 +20,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | TAB    |   Q  |   D  |   R  |   W  |   B  |      |           |      |   J  |   F  |   U  |   P  |   ;  |   BSP  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCTL   |   A  |   S  |   H  |   T  |   G  |------|           |------|   Y  |   N  |   E  |   O  |   I  |   '    |
- * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------| P_TAB|           |N_TAB |------+------+------+------+------+--------|
  * | LCMD   |   Z  |   X  |   M  |   C  |   V  |      |           |      |   K  |   L  |   ,  |   .  |   /  |  shift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
  *   | LALT |      |(~MED)|      |      |                                       |      | Left | Down | Up   | Right|
@@ -24,26 +28,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
  *                                 ,------|------|------|       |------+------+------.
- *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |FULL_S|      |      |      |      |
  *                                 | Space|Shift |------|       |------| ~SYM |Enter |
- *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      | BKS  |       |      |      |      |
  *                                 `--------------------'       `--------------------'
  */
+
 [WORKMAN] = LAYOUT_ergodox(
   // left hand
   XXXXXXX,         XXXXXXX,     XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   KC_TAB,          KC_Q,        KC_D,          KC_R,    KC_W,    KC_B,    XXXXXXX,
   KC_LCTL,         KC_A,        KC_S,          KC_H,    KC_T,    KC_G,
-  KC_LCMD,         KC_Z,        KC_X,          KC_M,    KC_C,    KC_V,    XXXXXXX,
+  KC_LCMD,         KC_Z,        KC_X,          KC_M,    KC_C,    KC_V,    P_TAB,
   KC_LALT,         KC_HYPR,    XXXXXXX,       XXXXXXX, XXXXXXX,
                                                                 XXXXXXX,  XXXXXXX,
-                                                                          XXXXXXX,
+                                                                          FULL_S,
                                                          KC_SPC, KC_LSFT, KC_BSPC,
   // right hand
   XXXXXXX,      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,  XXXXXXX,
   XXXXXXX,      KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_BSPC,
                 KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT,
-  XXXXXXX,      KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
+  N_TAB,      KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,
   XXXXXXX,      KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,
   XXXXXXX, XXXXXXX,
   XXXXXXX,
