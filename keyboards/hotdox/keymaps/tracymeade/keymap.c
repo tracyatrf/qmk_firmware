@@ -4,6 +4,7 @@
 enum {
     WORKMAN = 0,
     SYM,
+    NAV,
     // ..., the rest of your layers
 };
 
@@ -28,10 +29,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * | TAB    |   Q  |   D  |   R  |   W  |   B  |      |           |      |   J  |   F  |   U  |   P  |   ;  |   BSP  |
  * |--------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
  * | LCTL   |   A  |   S  |   H  |   T  |   G  |------|           |------|   Y  |   N  |   E  |   O  |   I  |   '    |
- * |--------+------+------+------+------+------| P_TAB|           |N_TAB |------+------+------+------+------+--------|
+ * |--------+------+------+------+------+------| ~NAV |           |N_TAB |------+------+------+------+------+--------|
  * | LCMD   |   Z  |   X  |   M  |   C  |   V  |      |           |      |   K  |   L  |   ,  |   .  |   /  |  shift |
  * `--------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
- *   | LALT |      |(~MED)|      |      |                                       |      | Left | Down | Up   | Right|
+ *   | LALT |      |      |      |      |                                       |      | Left | Down | Up   | Right|
  *   `----------------------------------'                                       `----------------------------------'
  *                                        ,-------------.       ,-------------.
  *                                        |      |      |       |      |      |
@@ -47,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX,         XXXXXXX,     XXXXXXX,       XXXXXXX, XXXXXXX, XXXXXXX, WIN_L,
   KC_TAB,          KC_Q,        KC_D,          KC_R,    KC_W,    KC_B,    P_TAB,
   KC_LCTL,         KC_A,        KC_S,          KC_H,    KC_T,    KC_G,
-  KC_LCMD,         KC_Z,        KC_X,          KC_M,    KC_C,    KC_V,    P_TAB,
+  KC_LCMD,         KC_Z,        KC_X,          KC_M,    KC_C,    KC_V,    MO(NAV),
   KC_LALT,         KC_HYPR,    XXXXXXX,       XXXXXXX, XXXXXXX,
                                                                 XXXXXXX,  XXXXXXX,
                                                                           FULL_S,
@@ -102,5 +103,47 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TRNS, KC_TRNS,
   KC_TRNS,
   KC_TRNS, KC_TRNS, KC_CAPS
+),
+
+/* Keymap 2: Navigation Layer
+ *
+ * ,---------------------------------------------------.           ,--------------------------------------------------.
+ * |         |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |---------+------+------+------+------+------+------|           |------+------+------+------+------+------+--------|
+ * |         |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |         |      |      |      |      |      |------|           |------| Left | Right|  Up  | Down |      |        |
+ * |---------+------+------+------+------+------|      |           |      |------+------+------+------+------+--------|
+ * |         |      |      |      |      |      |      |           |      |      |      |      |      |      |        |
+ * `---------+------+------+------+------+-------------'           `-------------+------+------+------+------+--------'
+ *   |       |      |      |      |      |                                       |      |      |      |      |      |
+ *   `-----------------------------------'                                       `----------------------------------'
+ *                                        ,-------------.       ,-------------.
+ *                                        |      |      |       |      |      |
+ *                                 ,------|------|------|       |------+------+------.
+ *                                 |      |      |      |       |      |      |      |
+ *                                 |      |      |------|       |------|      |      |
+ *                                 |      |      |      |       |      |      |      |
+ *                                 `--------------------'       `--------------------'
+ */
+[NAV] = LAYOUT_ergodox(
+  // left hand
+  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+  KC_TRNS,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                               KC_TRNS, KC_TRNS,
+                                                        KC_TRNS,
+                                      KC_TRNS, KC_TRNS, KC_TRNS,
+  // right hand
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,
+           KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,KC_TRNS,     KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,     KC_TRNS,
+  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS,
+    KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS
 )
 };
